@@ -1,25 +1,43 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import UserComponent from './userComponent';
+import store from './store/store';
+import { Breadcrumb, ConfigProvider, Flex, Layout } from 'antd';
+import { Header, Content, Footer } from 'antd/es/layout/layout';
+import Sider from 'antd/es/layout/Sider';
+import HeaderComponent from './components/HeaderComponent';
 
 function App() {
+  const { Header, Sider, Content } = Layout;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Flex gap="middle" wrap="wrap" style={{ height: "100%" }}>
+      <Layout>
+        <Header style={{ display: 'flex', alignItems: 'center', height: "10rem" }}>
+          <HeaderComponent/>
+        </Header>
+        <Layout style={{ display: 'flex' }}>
+          <Sider width={200}>
+          </Sider>
+          <Layout style={{ padding: '0 24px 24px' }}>
+            <Breadcrumb style={{ margin: '16px 0' }}>
+              <Breadcrumb.Item>Home</Breadcrumb.Item>
+              <Breadcrumb.Item>List</Breadcrumb.Item>
+              <Breadcrumb.Item>App</Breadcrumb.Item>
+            </Breadcrumb>
+            <Content
+              style={{
+                padding: 24,
+                margin: 0,
+                minHeight: 280,
+                borderRadius: '5px',
+              }}
+            >
+              Content
+            </Content>
+          </Layout>
+        </Layout>
+      </Layout>
+    </Flex>
   );
 }
 
