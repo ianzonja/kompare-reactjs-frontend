@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { FormState } from '../store/formSlice';
 
-const BASE_URL = 'http://localhost:8000/'; // Replace with your API base URL
+const BASE_URL = process.env.REACT_APP_BASE_URL; // Replace with your API base URL
 
 export interface InsuranceDataResponse {
     customerName: string,
