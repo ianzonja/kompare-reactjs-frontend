@@ -29,12 +29,39 @@ function HeaderComponent() {
     }, [vehiclePower, discounts, dispatch])
 
     const handleCommercialDiscountSwitch = (checked: boolean) => {
+        if (checked === true) {
+            const newDiscounts = [...discounts]
+            newDiscounts.push(Discounts.COMMERCIAL)
+            dispatch(setDiscounts(newDiscounts));
+        } else {
+            let newDiscounts = [...discounts]
+            newDiscounts = newDiscounts.filter(element => element != Discounts.COMMERCIAL)
+            dispatch(setDiscounts(newDiscounts));
+        }
         setCommercialDiscountSwitch(checked);
     };
     const handleAdviserDiscountSwitch = (checked: boolean) => {
+        if (checked === true) {
+            const newDiscounts = [...discounts]
+            newDiscounts.push(Discounts.ADVISER)
+            dispatch(setDiscounts(newDiscounts));
+        } else {
+            let newDiscounts = [...discounts]
+            newDiscounts = newDiscounts.filter(element => element != Discounts.ADVISER)
+            dispatch(setDiscounts(newDiscounts));
+        }
         setAdviserDiscountSwitch(checked);
     };
     const handleVipDiscountSwitch = (checked: boolean) => {
+        if (checked === true) {
+            const newDiscounts = [...discounts]
+            newDiscounts.push(Discounts.VIP)
+            dispatch(setDiscounts(newDiscounts));
+        } else {
+            let newDiscounts = [...discounts]
+            newDiscounts = newDiscounts.filter(element => element != Discounts.VIP)
+            dispatch(setDiscounts(newDiscounts));
+        }
         setVipDiscountSwitch(checked);
     };
     return (

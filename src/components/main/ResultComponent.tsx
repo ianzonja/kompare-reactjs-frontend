@@ -53,10 +53,10 @@ function resultComponent(data: InsuranceDataResponse) {
             <Typography.Title>Result</Typography.Title>
             <Row gutter={16}>
                 <Col span={12}>
-                    <Statistic title="Base price" value={data.basePrice} precision={2} />
+                    <Statistic title="Base price in EUR" value={data.basePrice} precision={2} />
                 </Col>
                 <Col span={12}>
-                    <Statistic title="Total price" value={data.totalPrice} precision={2} />
+                    <Statistic title="Total price in EUR" value={data.totalPrice} precision={2} />
                 </Col>
             </Row>
             <Divider />
