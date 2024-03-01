@@ -3,20 +3,46 @@ import { FormState } from '../store/formSlice';
 
 const BASE_URL = 'http://localhost:8000/'; // Replace with your API base URL
 
+export interface InsuranceDataResponse {
+    customerName: string,
+    customerBirthdate: string,
+    customerCity: string,
+    vehiclePower: number,
+    voucher: number,
+    priceMatch: number,
+    basePrice: number,
+    additionalCoverages: [{
+        price: number;
+        coverage: {
+            name: string;
+            description: string;
+        }
+    }],
+    discounts: [{
+        price: number;
+        discount: {
+            name: string;
+            description: string;
+        }
+    }],
+    priceBeforeDiscounts: number,
+    totalPrice: number
+}
+
 // Define types for API response and error
 interface ApiResponse<T> {
-    data: T;
+    data: InsuranceDataResponse;
 }
 
 interface ApiError {
     message: string;
 }
 
-export const postInsuranceData = async <T>(data: FormState): Promise<T> => {
+export const postInsuranceData = async <T>(data: FormState): Promise<InsuranceDataResponse> => {
     try {
         const route = 'calculate-insurance'
-        const response: AxiosResponse<ApiResponse<T>> = await axios.post(BASE_URL + route, data);
-        return response.data.data; // Return data from the API response
+        const response: AxiosResponse<InsuranceDataResponse> = await axios.post(BASE_URL + route, data);
+        return response.data; // Return data from the API response
     } catch (error) {
         throw handleError(error); // Handle and rethrow errors
     }

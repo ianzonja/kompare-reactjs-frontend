@@ -2,11 +2,13 @@ import { Button, Calendar, CalendarProps, Flex, Input, InputNumber, Typography, 
 import { useDispatch, useSelector } from "react-redux";
 import { FormState, setCity, setName, setBirthDate, setVehiclePower, setVoucher, setPriceMatch } from "./../../store/formSlice";
 import Title from "antd/es/typography/Title";
-import { Dayjs } from "dayjs";
-import { postInsuranceData } from './../../services/api'
-import { useEffect, useInsertionEffect } from "react";
+import dayjs, { Dayjs } from "dayjs";
+import { InsuranceDataResponse, postInsuranceData } from './../../services/api'
+import { useEffect, useInsertionEffect, useState } from "react";
+import ResultComponent from "./ResultComponent";
 
 function MainComponent() {
+    const [resultData, setResultData] = useState<InsuranceDataResponse | null>(null)
     const [api, contextHolder] = message.useMessage();
     const dispatch = useDispatch();
     const state = useSelector((state: { form: FormState }) => state.form);
@@ -40,6 +42,13 @@ function MainComponent() {
         dispatch(setPriceMatch(priceMatch))
     }
 
+    const disabledDate = (current: Dayjs) => {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const currentDate = new Date(current.year(), current.month(), current.date());
+        return currentDate.getTime() > today.getTime();
+      };
+
     const showNotification = () => {
         api.open({
             type: 'error',
@@ -50,9 +59,8 @@ function MainComponent() {
     const submitForm = async () => {
         if (state.name === '' || state.birthdate === '' || state.city === '' || state.vehiclePower === 0) showNotification()
         else {
-            const result = await postInsuranceData(state)
-            console.log('RESULT')
-            console.log(result)
+            const response = await postInsuranceData(state)
+            setResultData(response)
         }
     }
     return (
@@ -70,7 +78,7 @@ function MainComponent() {
                 </div>
                 <div className="flex justify-center flex-wrap">
                     <Typography.Title className="w-full text-center" level={4}>Birthday</Typography.Title>
-                    <Calendar className="w-full sm:w-full md:w-4/5 lg:w-3/5 xl:w-2/5" fullscreen={false} onSelect={handleSetBirthdate} />
+                    <Calendar className="w-full sm:w-full md:w-4/5 lg:w-3/5 xl:w-2/5" disabledDate={disabledDate} fullscreen={false} onSelect={handleSetBirthdate} />
                 </div>
                 <div className="flex justify-center flex-wrap">
                     <Typography.Title className="w-full text-center" level={4}>City</Typography.Title>
@@ -98,6 +106,11 @@ function MainComponent() {
                     }}>Submit</Button>
                 </div>
             </Flex>
+            {
+                resultData !== null && (
+                    <ResultComponent {...resultData}/>
+                )
+            }
         </>
     )
 }
