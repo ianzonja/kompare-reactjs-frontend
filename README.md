@@ -1,7 +1,9 @@
 # Kompare Assignment - Back-end
 
 This is a Back-end part of the assignment for Kompare hiring, written by Ian Žonja. 
-Important: .env file is commited intentionally, so everyone who clone the project have the access to the databse, and can test the project without me giving the access to the db.
+Important: .env file is commited intentionally, so everyone who clone the project have the access to env configuration and can test the project without me giving the configuration.
+
+App is hosted here: https://tranquil-bunny-abac2a.netlify.app/
 
 ## Tech used
 The following tech was used for the development of front-end:
