@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { FormState, setCoverages } from "../../store/formSlice";
 import { Coverages } from "../../enums/coverages";
 
-function SidebarComponent () {
+interface SidebarProps {
+    sidebarCollapsed: boolean;
+}
+
+function SidebarComponent (collapsed: SidebarProps) {
     const [bonusProtectionSwitch, setBonusProtectionSwitch] = useState(false);
     const [aoSwitch, setAoSwitch] = useState(false);
     const [glassProtectionSwitch, setGlassProtectionSwitch] = useState(false);
@@ -52,38 +56,42 @@ function SidebarComponent () {
     };
     return (
         <div className="w-full flex flex-column flex-wrap h-full items-center justify-center">
-            <div className="flex flex-column flex-wrap items-center justify-center">
-                <div className="flex-grow flex-1 p-2 h-60">
-                    <Card title={Coverages.BONUS_PROTECTION} className="w-full h-full" extra={<Switch className="bg-zinc-300" checked={bonusProtectionSwitch} onChange={handleBonusProtectionSwitch} />}>
-                        <Row className="w-full h-full" justify="center">
-                            <div> 12% of the base price </div>
-                        </Row>
-                    </Card>
-                </div>
-                <div className="flex-grow flex-1 p-2 h-60">
-                    <Card title="AO+" className="w-full h-full" extra={<Switch className="bg-zinc-300" checked={aoSwitch} onChange={handleAoSwitch} />}>
-                        <Row className="w-full h-full" justify="center">
-                            <div>
-                                <ol>
-                                    <li>
-                                        55 EUR for users younger than 30 years
-                                    </li>
-                                    <li>
-                                        105 EUR for users that are 30 years old or older
-                                    </li>
-                                </ol>
-                            </div>
-                        </Row>
-                    </Card>
-                </div>
-                <div className="flex-grow flex-1 p-2 h-60">
-                    <Card title="Glass protection" className="w-full h-full" extra={<Switch className="bg-zinc-300" checked={glassProtectionSwitch} onChange={handleGlassProtectionSwitch} />}>
-                        <Row className="w-full h-full" justify="center">
-                            <div>80% of the vehicle power</div>
-                        </Row>
-                    </Card>
-                </div>
-            </div>
+            {
+                collapsed.sidebarCollapsed === false && (
+                    <div className="flex flex-column flex-wrap items-center justify-center">
+                        <div className="flex-grow flex-1 p-2 h-60">
+                            <Card title={Coverages.BONUS_PROTECTION} className="w-full h-full" extra={<Switch className="bg-zinc-300" checked={bonusProtectionSwitch} onChange={handleBonusProtectionSwitch} />}>
+                                <Row className="w-full h-full" justify="center">
+                                    <div> 12% of the base price </div>
+                                </Row>
+                            </Card>
+                        </div>
+                        <div className="flex-grow flex-1 p-2 h-60">
+                            <Card title="AO+" className="w-full h-full" extra={<Switch className="bg-zinc-300" checked={aoSwitch} onChange={handleAoSwitch} />}>
+                                <Row className="w-full h-full" justify="center">
+                                    <div>
+                                        <ol>
+                                            <li>
+                                                55 EUR for users younger than 30 years
+                                            </li>
+                                            <li>
+                                                105 EUR for users that are 30 years old or older
+                                            </li>
+                                        </ol>
+                                    </div>
+                                </Row>
+                            </Card>
+                        </div>
+                        <div className="flex-grow flex-1 p-2 h-60">
+                            <Card title="Glass protection" className="w-full h-full" extra={<Switch className="bg-zinc-300" checked={glassProtectionSwitch} onChange={handleGlassProtectionSwitch} />}>
+                                <Row className="w-full h-full" justify="center">
+                                    <div>80% of the vehicle power</div>
+                                </Row>
+                            </Card>
+                        </div>
+                    </div>
+                )
+            }
         </div>
     )
 }

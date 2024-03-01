@@ -66,7 +66,7 @@ function HeaderComponent() {
     };
     return (
         <div className="flex flex-wrap">
-            <div className="p-2 flex-grow flex-1">
+            <div className="p-2 flex-grow flex-1 w-full">
                 <Card title="Commercial discount" className="w-full h-full" extra={<Switch className="bg-zinc-300" checked={commercialDiscountSwitch} onChange={handleCommercialDiscountSwitch}/>}>
                     <Row className="text-wrap" justify="center">
                         <div>10% on the base price</div>
@@ -75,7 +75,7 @@ function HeaderComponent() {
             </div>
             {
                 additionalCoverages.length > 1 && (
-                    <div className="p-2 flex-grow flex-1">
+                    <div className="p-2 flex-grow flex-1 w-full">
                         <Card
                             title="Adviser discount"
                             className="w-full h-full"
@@ -96,7 +96,7 @@ function HeaderComponent() {
             }
             {
                 vehiclePower > 80 && (
-                    <div className="flex-grow flex-1 p-2">
+                    <div className="flex-grow flex-1 p-2 w-full">
                         <Card title="VIP discount" className="w-full h-full" extra={<Switch className="bg-zinc-300" checked={vipDiscountSwitch} onChange={handleVipDiscountSwitch} />}>
                             <Row className="text-wrap" justify="center">
                                 <div>5% on the total price if vehicle power over 80</div>
@@ -108,7 +108,7 @@ function HeaderComponent() {
 
             {
                 vehiclePower > 100 && (
-                    <div className="flex-grow flex-1 p-2">
+                    <div className="flex-grow flex-1 p-2 w-full">
                         <Card title="Strong car surcharge" className="w-full h-full">
                             <Row className="w-full h-full" justify="center">
                                 <div className="text-wrap">+ 10% if vehicle power over 100 - applied automatically (can’t be turned off)</div>
