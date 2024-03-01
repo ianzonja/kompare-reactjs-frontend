@@ -32,7 +32,7 @@ or linux with
 build:prod:linux
 ```
 
-4) Run the project
+5) Run the project
 ```bash
 npm run start
 ```
