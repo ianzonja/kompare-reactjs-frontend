@@ -1,43 +1,54 @@
 import React from 'react';
-import UserComponent from './userComponent';
 import store from './store/store';
 import { Breadcrumb, ConfigProvider, Flex, Layout } from 'antd';
 import { Header, Content, Footer } from 'antd/es/layout/layout';
 import Sider from 'antd/es/layout/Sider';
-import HeaderComponent from './components/HeaderComponent';
+import HeaderComponent from './components/header/HeaderComponent';
+import SidebarComponent from './components/sidebar/SidebarComponent';
+import MainComponent from './components/main/MainComponent';
 
 function App() {
   const { Header, Sider, Content } = Layout;
 
   return (
-    <Flex gap="middle" wrap="wrap" style={{ height: "100%" }}>
-      <Layout>
-        <Header style={{ display: 'flex', alignItems: 'center', height: "10rem" }}>
-          <HeaderComponent/>
-        </Header>
-        <Layout style={{ display: 'flex' }}>
-          <Sider width={200}>
-          </Sider>
-          <Layout style={{ padding: '0 24px 24px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>List</Breadcrumb.Item>
-              <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb>
-            <Content
+    <ConfigProvider theme={{ 
+      components: {
+        Button: {
+          defaultBg: '#123123'
+        }
+      },
+      token: { 
+        colorPrimary: '#4B0082'
+      } 
+    }}>
+      <Layout hasSider className='h-full'>
+        <Sider
+          width={300}
+          style={{ overflow: 'auto', height: '100vh', position: 'fixed', left: 0, top: 0, bottom: 0, padding: 15 }}
+        >
+          <SidebarComponent/>
+        </Sider>
+        <Layout style={{ marginLeft: 300 }}>
+          <Header style={{ padding: 15, alignItems: 'center', height: 'auto' }}>
+            <HeaderComponent/>
+          </Header>
+          <Content style={{ height: '100%', padding: 15 }}>
+            <div
               style={{
                 padding: 24,
-                margin: 0,
-                minHeight: 280,
-                borderRadius: '5px',
+                textAlign: 'center',
+                height: '100%'
               }}
             >
-              Content
-            </Content>
-          </Layout>
+              <MainComponent/>
+            </div>
+          </Content>
+          <Footer style={{ textAlign: 'center', padding: 15 }}>
+            Created by Ian Žonja, (hopefully) future full-stack engineer @Kompare ❤
+          </Footer>
         </Layout>
       </Layout>
-    </Flex>
+    </ConfigProvider>
   );
 }
 
