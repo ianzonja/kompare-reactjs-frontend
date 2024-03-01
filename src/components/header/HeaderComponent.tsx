@@ -1,5 +1,4 @@
-import { Button, Card, Col, Row, Switch } from "antd";
-import Meta from "antd/es/card/Meta";
+import { Card, Row, Switch } from "antd";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FormState, setDiscounts } from "../../store/formSlice";
@@ -23,7 +22,7 @@ function HeaderComponent() {
         }
         else if (vehiclePower <= 100 && discounts.indexOf(Discounts.STRONG_CAR_SURCHARGE) !== -1) {
             let newDiscounts = [...discounts]
-            newDiscounts = newDiscounts.filter(element => element != Discounts.STRONG_CAR_SURCHARGE)
+            newDiscounts = newDiscounts.filter(element => element !== Discounts.STRONG_CAR_SURCHARGE)
             dispatch(setDiscounts(newDiscounts))
         }
     }, [vehiclePower, discounts, dispatch])
@@ -35,7 +34,7 @@ function HeaderComponent() {
             dispatch(setDiscounts(newDiscounts));
         } else {
             let newDiscounts = [...discounts]
-            newDiscounts = newDiscounts.filter(element => element != Discounts.COMMERCIAL)
+            newDiscounts = newDiscounts.filter(element => element !== Discounts.COMMERCIAL)
             dispatch(setDiscounts(newDiscounts));
         }
         setCommercialDiscountSwitch(checked);
@@ -47,7 +46,7 @@ function HeaderComponent() {
             dispatch(setDiscounts(newDiscounts));
         } else {
             let newDiscounts = [...discounts]
-            newDiscounts = newDiscounts.filter(element => element != Discounts.ADVISER)
+            newDiscounts = newDiscounts.filter(element => element !== Discounts.ADVISER)
             dispatch(setDiscounts(newDiscounts));
         }
         setAdviserDiscountSwitch(checked);
@@ -59,7 +58,7 @@ function HeaderComponent() {
             dispatch(setDiscounts(newDiscounts));
         } else {
             let newDiscounts = [...discounts]
-            newDiscounts = newDiscounts.filter(element => element != Discounts.VIP)
+            newDiscounts = newDiscounts.filter(element => element !== Discounts.VIP)
             dispatch(setDiscounts(newDiscounts));
         }
         setVipDiscountSwitch(checked);

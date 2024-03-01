@@ -1,7 +1,4 @@
-import { type } from "@testing-library/user-event/dist/type"
-import { Button, Col, Divider, Row, Statistic, Table, TableProps, Typography } from "antd"
-import style from "antd/es/affix/style"
-import { title } from "process"
+import { Col, Divider, Row, Statistic, Table, TableProps, Typography } from "antd"
 import { InsuranceDataResponse } from "../../services/api"
 
 interface Columns {
@@ -11,21 +8,38 @@ interface Columns {
 }
 
 function resultComponent(data: InsuranceDataResponse) {
-    const tableColumns: TableProps<Columns>['columns'] = [
+    const coveragesColumns: TableProps<Columns>['columns'] = [
         {
             title: 'Name',
             dataIndex: 'name',
-            key: 'name',
+            key: 'coverageName',
         },
         {
             title: 'Description',
             dataIndex: 'description',
-            key: 'description',
+            key: 'coverageDescription',
         },
         {
             title: 'Price in EUR',
             dataIndex: 'price',
-            key: 'price',
+            key: 'coveragePrice',
+        }
+    ]
+    const discountColumns: TableProps<Columns>['columns'] = [
+        {
+            title: 'Name',
+            dataIndex: 'name',
+            key: 'discountName',
+        },
+        {
+            title: 'Description',
+            dataIndex: 'description',
+            key: 'discountDescription',
+        },
+        {
+            title: 'Price in EUR',
+            dataIndex: 'price',
+            key: 'discountPrice',
         }
     ]
     const coverages = data.additionalCoverages
@@ -68,10 +82,10 @@ function resultComponent(data: InsuranceDataResponse) {
             </Row>
             <Divider />
             <Typography.Title level={4}>Additional coverages</Typography.Title>
-            <Table columns={tableColumns} dataSource={coverageTableValues} />
+            <Table columns={coveragesColumns} dataSource={coverageTableValues} />
             <Divider />
             <Typography.Title level={4}>Discounts</Typography.Title>
-            <Table columns={tableColumns} dataSource={discountTableValues} />
+            <Table columns={discountColumns} dataSource={discountTableValues} />
         </>
 
     )

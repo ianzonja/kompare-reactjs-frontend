@@ -1,10 +1,10 @@
-import { Button, Calendar, CalendarProps, Flex, Input, InputNumber, Typography, message } from "antd"
+import { Button, Calendar, Flex, Input, InputNumber, Typography, message } from "antd"
 import { useDispatch, useSelector } from "react-redux";
 import { FormState, setCity, setName, setBirthDate, setVehiclePower, setVoucher, setPriceMatch } from "./../../store/formSlice";
 import Title from "antd/es/typography/Title";
-import dayjs, { Dayjs } from "dayjs";
+import { Dayjs } from "dayjs";
 import { InsuranceDataResponse, postInsuranceData } from './../../services/api'
-import { useEffect, useInsertionEffect, useState } from "react";
+import { useState } from "react";
 import ResultComponent from "./ResultComponent";
 
 function MainComponent() {
@@ -13,8 +13,6 @@ function MainComponent() {
     const dispatch = useDispatch();
     const state = useSelector((state: { form: FormState }) => state.form);
 
-
-    console.log(state)
     const handleSetName = (name: string) => {
         dispatch(setName(name));
     };
@@ -24,13 +22,10 @@ function MainComponent() {
     }
 
     const handleSetBirthdate = (value: Dayjs) => {
-        console.log(value.format('MM/DD/YYYY'))
         dispatch(setBirthDate(value.format('MM/DD/YYYY')))
     }
 
     const handleSetVehiclePower = (vehiclePower: number) => {
-        console.log('dispatch!')
-        console.log(vehiclePower)
         dispatch(setVehiclePower(vehiclePower))
     }
 

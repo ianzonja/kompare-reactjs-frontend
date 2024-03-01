@@ -15,8 +15,6 @@ function SidebarComponent (collapsed: SidebarProps) {
 
     const dispatch = useDispatch();
     const coverages = useSelector((state: { form: FormState }) => state.form.coverages);
-    console.log('coverages:')
-    console.log(coverages)
 
     const handleBonusProtectionSwitch = (checked: boolean) => {
         setBonusProtectionSwitch(checked);
@@ -26,7 +24,7 @@ function SidebarComponent (collapsed: SidebarProps) {
             dispatch(setCoverages(newCoverages));
         } else {
             let newCoverages = [...coverages]
-            newCoverages = newCoverages.filter(element => element != Coverages.BONUS_PROTECTION)
+            newCoverages = newCoverages.filter(element => element !== Coverages.BONUS_PROTECTION)
             dispatch(setCoverages(newCoverages));
         }
     };
@@ -38,7 +36,7 @@ function SidebarComponent (collapsed: SidebarProps) {
             dispatch(setCoverages(newCoverages));
         } else {
             let newCoverages = [...coverages]
-            newCoverages = newCoverages.filter(element => element != Coverages.AO)
+            newCoverages = newCoverages.filter(element => element !== Coverages.AO)
             dispatch(setCoverages(newCoverages));
         }
     };
@@ -50,7 +48,7 @@ function SidebarComponent (collapsed: SidebarProps) {
             dispatch(setCoverages(newCoverages));
         } else {
             let newCoverages = [...coverages]
-            newCoverages = newCoverages.filter(element => element != Coverages.GLASS_PROTECTION)
+            newCoverages = newCoverages.filter(element => element !== Coverages.GLASS_PROTECTION)
             dispatch(setCoverages(newCoverages));
         }
     };

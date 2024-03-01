@@ -29,16 +29,11 @@ export interface InsuranceDataResponse {
     totalPrice: number
 }
 
-// Define types for API response and error
-interface ApiResponse<T> {
-    data: InsuranceDataResponse;
-}
-
 interface ApiError {
     message: string;
 }
 
-export const postInsuranceData = async <T>(data: FormState): Promise<InsuranceDataResponse> => {
+export const postInsuranceData = async (data: FormState): Promise<InsuranceDataResponse> => {
     try {
         const route = 'calculate-insurance'
         const response: AxiosResponse<InsuranceDataResponse> = await axios.post(BASE_URL + route, data);
