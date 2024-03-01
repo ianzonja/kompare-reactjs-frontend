@@ -23,7 +23,16 @@ Use the npm package manager. To start the project do the following:
 npm install
 ```
 
-4) Run the project
+4) Optionally build on windows with
+```bash
+build:prod:windows
+```
+or linux with
+```bash
+build:prod:linux
+```
+
+5) Run the project
 ```bash
 npm run start
 ```
