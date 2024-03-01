@@ -47,6 +47,13 @@ function resultComponent(data: InsuranceDataResponse) {
             price: discount.price
         })
     }
+    if (data.voucher > 0) {
+        discountTableValues.push({
+            name: 'Voucher',
+            description: 'User entered voucher',
+            price: data.voucher
+        })
+    }
     return (
         <>
             <Divider />
